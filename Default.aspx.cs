@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 public partial class _Default : System.Web.UI.Page
 {
     const string NO_RESULTS = "No results found.";
+    const string RESULTS_OF = "Result {0} of {1}";
     string dir;
     string[] excludedTerms,
              readFromFiles,
