@@ -43,7 +43,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            searchTerms = tbSearch.Text.Split(new Char[] { ' ' });
+            searchTerms = tbSearch.Text.Split(new Char[] { ' ' }).Except(excludedTerms).ToArray();
         }
     }
 
@@ -77,7 +77,7 @@ public partial class _Default : System.Web.UI.Page
     {
         StreamReader reader = new StreamReader(dir + "exclusion/exclusion.txt");
         string content = reader.ReadToEnd();
-        excludedTerms = content.Split(new Char[] { '\n' });
+        excludedTerms = content.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
     }
 
 }
