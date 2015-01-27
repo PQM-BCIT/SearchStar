@@ -45,6 +45,10 @@ public partial class _Default : System.Web.UI.Page
         else
         {
             searchTerms = tbSearch.Text.Split(new Char[] { ' ' }).Except(excludedTerms).ToArray();
+            if (searchTerms.Length == 0)
+            {
+                taResult.Text = "Please enter more search terms.";
+            }
         }
     }
 
