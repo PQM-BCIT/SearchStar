@@ -46,13 +46,16 @@ public partial class _Default : System.Web.UI.Page
         searchTerms = tbSearch.Text.Split(' ').Except(excludedTerms).ToArray();
         if (searchTerms.Length == 0)
         {
-            tbResultsNum.Text = NO_RESULTS;
-            taResult.Text = "Please enter more search terms.";
+            ReturnNoneFound("Please enter more search terms.");
             return;
         }
 
         resultFiles = SearchForFiles();
-        taResult.Text = Convert.ToString(resultFiles.Length);
+        if (resultFiles.Length == 0)
+        {
+            ReturnNoneFound();
+            return;
+        }
     }
 
     /// <summary>
@@ -85,6 +88,12 @@ public partial class _Default : System.Web.UI.Page
     {
         string content = File.ReadAllText(dir + "exclusion/exclusion.txt");
         excludedTerms = content.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+    }
+
+    private void ReturnNoneFound(string str = "")
+    {
+        tbResultsNum.Text = NO_RESULTS;
+        taResult.Text = str;
     }
 
     /// <summary>
