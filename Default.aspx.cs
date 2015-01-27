@@ -10,12 +10,12 @@ public partial class _Default : System.Web.UI.Page
 {
     const string NO_RESULTS = "No results found.";
     const string RESULTS_OF = "Result {0} of {1}";
-    int current;
-    string dir;
-    string[] excludedTerms,
-             readFromFiles,
-             searchTerms,
-             resultFiles;
+    static int current;
+    static string dir;
+    static string[] excludedTerms,
+                    readFromFiles,
+                    searchTerms,
+                    resultFiles;
 
     /// <summary>
     /// Runs on first page load.
@@ -26,9 +26,12 @@ public partial class _Default : System.Web.UI.Page
     /// <param name="e">The arguments of the message.</param>
     protected void Page_Load(object sender, EventArgs e)
     {
-        InitJquery();
-        InitFiles();
-        InitTerms();
+        if (!IsPostBack)
+        {
+            InitJquery();
+            InitFiles();
+            InitTerms();
+        }
     }
 
     /// <summary>
