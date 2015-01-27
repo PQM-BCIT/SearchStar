@@ -8,9 +8,10 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-
+    const string NO_RESULTS = "No results found.";
     string dir;
-    string[] allFiles,
+    string[] excludedTerms,
+             readFromFiles,
              searchTerms,
              resultFiles;
 
@@ -24,8 +25,8 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         InitJquery();
-        dir = MapPath("./files");
-        allFiles = Directory.GetFiles(dir, "*.txt");
+        InitFiles();
+        InitTerms();
     }
 
     /// <summary>
@@ -35,7 +36,12 @@ public partial class _Default : System.Web.UI.Page
     /// <param name="e">The arguments of the message.</param>
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-        if (!String.IsNullOrEmpty(tbSearch.Text))
+        if (String.IsNullOrEmpty(tbSearch.Text) || readFromFiles.Length == 0)
+        {
+            tbResultsNum.Text = NO_RESULTS;
+            resultFiles = new string[] {};
+        }
+        else
         {
             searchTerms = tbSearch.Text.Split(new Char[] { ' ' });
         }
@@ -53,6 +59,25 @@ public partial class _Default : System.Web.UI.Page
         myScriptResDef.CdnPath = "http://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js";
         myScriptResDef.CdnDebugPath = "http://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.js";
         ScriptManager.ScriptResourceMapping.AddDefinition("jquery", null, myScriptResDef);
+    }
+
+    /// <summary>
+    /// Initializes files variables.
+    /// </summary>
+    private void InitFiles()
+    {
+        dir = MapPath("./");
+        readFromFiles = Directory.GetFiles(dir + "files", "*.txt");
+    }
+
+    /// <summary>
+    /// Initialize excluded terms array.
+    /// </summary>
+    private void InitTerms()
+    {
+        StreamReader reader = new StreamReader(dir + "exclusion/exclusion.txt");
+        string content = reader.ReadToEnd();
+        excludedTerms = content.Split(new Char[] { '\n' });
     }
 
 }
