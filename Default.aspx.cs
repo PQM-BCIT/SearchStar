@@ -37,18 +37,18 @@ public partial class _Default : System.Web.UI.Page
     /// <param name="e">The arguments of the message.</param>
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-        if (String.IsNullOrEmpty(tbSearch.Text) || readFromFiles.Length == 0)
+        if (String.IsNullOrEmpty(tbSearch.Text))
         {
             tbResultsNum.Text = NO_RESULTS;
-            resultFiles = new string[] {};
+            return;
         }
-        else
+
+        searchTerms = tbSearch.Text.Split(new Char[] { ' ' }).Except(excludedTerms).ToArray();
+        if (searchTerms.Length == 0)
         {
-            searchTerms = tbSearch.Text.Split(new Char[] { ' ' }).Except(excludedTerms).ToArray();
-            if (searchTerms.Length == 0)
-            {
-                taResult.Text = "Please enter more search terms.";
-            }
+            tbResultsNum.Text = NO_RESULTS;
+            taResult.Text = "Please enter more search terms.";
+            return;
         }
     }
 
