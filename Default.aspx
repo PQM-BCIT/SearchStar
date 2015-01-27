@@ -7,17 +7,17 @@
     <asp:TextBox ID="tbSearch" runat="server" Width="820px"></asp:TextBox>
     <asp:Button ID="btnSearch" runat="server" Text="Search" />
     <br />
-    <asp:ImageButton ID="ibFirst" runat="server" ClientIDMode="Static" ImageUrl="~/files/images/first.png" OnClick="ImageButton1_Click" />
+    <asp:ImageButton ID="ibFirst" runat="server" ImageUrl="~/files/images/first.png" />
     &nbsp;
     <asp:ImageButton ID="ibPrevious" runat="server" ImageUrl="~/files/images/previous.png" />
     &nbsp;
-    <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/files/images/next.png" />
+    <asp:ImageButton ID="ibNext" runat="server" ImageUrl="~/files/images/next.png" />
     &nbsp;
-    <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/files/images/last.png" />
+    <asp:ImageButton ID="ibLast" runat="server" ImageUrl="~/files/images/last.png" />
     &nbsp;
-    <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/files/images/print.png" />
+    <asp:ImageButton ID="ibPrint" runat="server" ImageUrl="~/files/images/print.png" />
     &nbsp;
-    <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/files/images/save.png" />
+    <asp:ImageButton ID="ibSave" runat="server" ImageUrl="~/files/images/save.png" />
     <br />
     <asp:TextBox ID="tbFilename" runat="server" Width="700px" ReadOnly="True"></asp:TextBox>
     <asp:TextBox ID="tbResultsNum" runat="server" Width="120px" ReadOnly="True"></asp:TextBox>
