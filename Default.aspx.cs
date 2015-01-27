@@ -43,13 +43,16 @@ public partial class _Default : System.Web.UI.Page
             return;
         }
 
-        searchTerms = tbSearch.Text.Split(new Char[] { ' ' }).Except(excludedTerms).ToArray();
+        searchTerms = tbSearch.Text.Split(' ').Except(excludedTerms).ToArray();
         if (searchTerms.Length == 0)
         {
             tbResultsNum.Text = NO_RESULTS;
             taResult.Text = "Please enter more search terms.";
             return;
         }
+
+        resultFiles = SearchForFiles();
+        taResult.Text = Convert.ToString(resultFiles.Length);
     }
 
     /// <summary>
@@ -80,9 +83,30 @@ public partial class _Default : System.Web.UI.Page
     /// </summary>
     private void InitTerms()
     {
-        StreamReader reader = new StreamReader(dir + "exclusion/exclusion.txt");
-        string content = reader.ReadToEnd();
+        string content = File.ReadAllText(dir + "exclusion/exclusion.txt");
         excludedTerms = content.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+    }
+
+    /// <summary>
+    /// Searches through the .txt files in ./files using the search query.
+    /// </summary>
+    /// <returns>Array of filepaths to files containg search terms.</returns>
+    private string[] SearchForFiles()
+    {
+        List<string> files = new List<string>();
+        for (int i = 0; i < readFromFiles.Length; i++)
+        {
+            string content = File.ReadAllText(readFromFiles[i]);
+            for (int j = 0; j < searchTerms.Length; j++)
+            {
+                if (content.Contains(searchTerms[j]))
+                {
+                    files.Add(readFromFiles[i]);
+                }
+            }
+        }
+
+        return files.ToArray();
     }
 
 }
