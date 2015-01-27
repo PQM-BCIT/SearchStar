@@ -10,6 +10,7 @@ public partial class _Default : System.Web.UI.Page
 {
     const string NO_RESULTS = "No results found.";
     const string RESULTS_OF = "Result {0} of {1}";
+    int current;
     string dir;
     string[] excludedTerms,
              readFromFiles,
@@ -39,7 +40,7 @@ public partial class _Default : System.Web.UI.Page
     {
         if (String.IsNullOrEmpty(tbSearch.Text))
         {
-            tbResultsNum.Text = NO_RESULTS;
+            ReturnNoneFound("Please enter more search terms.");
             return;
         }
 
@@ -55,6 +56,11 @@ public partial class _Default : System.Web.UI.Page
         {
             ReturnNoneFound();
             return;
+        }
+        else
+        {
+            current = 0;
+            UpdateForm();
         }
     }
 
@@ -90,9 +96,14 @@ public partial class _Default : System.Web.UI.Page
         excludedTerms = content.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
     }
 
+    /// <summary>
+    /// Formatter for web form when no results are found.
+    /// </summary>
+    /// <param name="str">Displays message in text area.</param>
     private void ReturnNoneFound(string str = "")
     {
         tbResultsNum.Text = NO_RESULTS;
+        tbFilename.Text = "";
         taResult.Text = str;
     }
 
@@ -105,7 +116,7 @@ public partial class _Default : System.Web.UI.Page
         List<string> files = new List<string>();
         for (int i = 0; i < readFromFiles.Length; i++)
         {
-            string content = File.ReadAllText(readFromFiles[i]);
+            string content = GetContents(readFromFiles[i]);
             for (int j = 0; j < searchTerms.Length; j++)
             {
                 if (content.Contains(searchTerms[j]))
@@ -116,6 +127,30 @@ public partial class _Default : System.Web.UI.Page
         }
 
         return files.ToArray();
+    }
+
+    /// <summary>
+    /// Updates web form with single result from search.
+    /// </summary>
+    private void UpdateForm()
+    {
+        string currentPosition = Convert.ToString(current + 1);
+        string lastPosition = Convert.ToString(resultFiles.Length);
+        tbFilename.Text = Path.GetFileName(resultFiles[current]);
+        tbResultsNum.Text = RESULTS_OF.Replace("{0}", currentPosition).Replace("{1}", lastPosition);
+        taResult.Text = GetContents(resultFiles[current]);
+    }
+
+    /// <summary>
+    /// Returns the content of a text file.
+    /// </summary>
+    /// <param name="filepath">Filepath to file to be opened.</param>
+    /// <returns>Content of text file.</returns>
+    private string GetContents(string filepath)
+    {
+        string content;
+        content = File.ReadAllText(filepath);
+        return content;
     }
 
 }
