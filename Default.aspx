@@ -8,13 +8,13 @@
     <asp:TextBox ID="tbSearch" runat="server" Width="820px"></asp:TextBox>
     <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
     <br />
-    <asp:ImageButton ID="ibFirst" runat="server" ImageUrl="~/files/images/first.png" />
+    <asp:ImageButton ID="ibFirst" runat="server" ImageUrl="~/files/images/first.png" OnClick="ibFirst_Click" />
     &nbsp;
-    <asp:ImageButton ID="ibPrevious" runat="server" ImageUrl="~/files/images/previous.png" />
+    <asp:ImageButton ID="ibPrevious" runat="server" ImageUrl="~/files/images/previous.png" OnClick="ibPrevious_Click" />
     &nbsp;
-    <asp:ImageButton ID="ibNext" runat="server" ImageUrl="~/files/images/next.png" />
+    <asp:ImageButton ID="ibNext" runat="server" ImageUrl="~/files/images/next.png" OnClick="ibNext_Click" />
     &nbsp;
-    <asp:ImageButton ID="ibLast" runat="server" ImageUrl="~/files/images/last.png" />
+    <asp:ImageButton ID="ibLast" runat="server" ImageUrl="~/files/images/last.png" OnClick="ibLast_Click" />
     &nbsp;
     <asp:ImageButton ID="ibPrint" runat="server" ImageUrl="~/files/images/print.png" />
     &nbsp;

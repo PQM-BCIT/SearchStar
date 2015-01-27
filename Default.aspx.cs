@@ -64,6 +64,26 @@ public partial class _Default : System.Web.UI.Page
         }
     }
 
+    protected void ibFirst_Click(object sender, ImageClickEventArgs e)
+    {
+
+    }
+
+    protected void ibPrevious_Click(object sender, ImageClickEventArgs e)
+    {
+
+    }
+
+    protected void ibNext_Click(object sender, ImageClickEventArgs e)
+    {
+
+    }
+
+    protected void ibLast_Click(object sender, ImageClickEventArgs e)
+    {
+
+    }
+
     /// <summary>
     /// Initializes jQuery for the Required Field Validation.
     /// Source: https://msdn.microsoft.com/en-us/library/system.web.ui.scriptmanager.scriptresourcemapping%28v=vs.110%29.aspx
