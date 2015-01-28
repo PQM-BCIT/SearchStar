@@ -69,22 +69,34 @@ public partial class _Default : System.Web.UI.Page
 
     protected void ibFirst_Click(object sender, ImageClickEventArgs e)
     {
-
+        if (current == 0)
+            return;
+        current = 0;
+        UpdateForm();
     }
 
     protected void ibPrevious_Click(object sender, ImageClickEventArgs e)
     {
-
+        if (current == 0)
+            return;
+        current--;
+        UpdateForm();
     }
 
     protected void ibNext_Click(object sender, ImageClickEventArgs e)
     {
-
+        if (current == resultFiles.Length - 1)
+            return;
+        current++;
+        UpdateForm();
     }
 
     protected void ibLast_Click(object sender, ImageClickEventArgs e)
     {
-
+        if (current == resultFiles.Length - 1)
+            return;
+        current = resultFiles.Length - 1;
+        UpdateForm();
     }
 
     /// <summary>
