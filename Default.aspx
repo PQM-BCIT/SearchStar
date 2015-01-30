@@ -6,7 +6,7 @@
 <asp:Content ID="contentInterface" ContentPlaceHolderID="cphInterface" Runat="Server">
     <asp:RequiredFieldValidator ID="rfvSearch" runat="server" ErrorMessage="Search query was empty." ControlToValidate="tbSearch" ForeColor="Red"></asp:RequiredFieldValidator>
     <br />
-    <asp:TextBox ID="tbSearch" runat="server" Width="820px"></asp:TextBox>
+    <asp:TextBox ID="tbSearch" runat="server" Width="820px" ValidateRequestMode="Disabled"></asp:TextBox>
     <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
     <br />
     <asp:ImageButton ID="ibFirst" runat="server" ImageUrl="~/files/images/first.png" OnClick="ibFirst_Click" />
