@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
 <asp:Content ID="contentHeader" ContentPlaceHolderID="head" Runat="Server">
     &lt;LOGO HERE&gt;
 </asp:Content>
@@ -16,12 +17,34 @@
     &nbsp;
     <asp:ImageButton ID="ibLast" runat="server" ImageUrl="~/files/images/last.png" OnClick="ibLast_Click" />
     &nbsp;
-    <asp:ImageButton ID="ibPrint" runat="server" ImageUrl="~/files/images/print.png" />
+    <asp:ImageButton ID="ibPrint" runat="server" ImageUrl="~/files/images/print.png" OnClientClick="javascript:Print();"/>
     &nbsp;
-    <asp:ImageButton ID="ibSave" runat="server" ImageUrl="~/files/images/save.png" />
+    <a id="ibSave" runat="server"><img src="files/images/save.png" /></a>
     <br />
-    <asp:TextBox ID="tbFilename" runat="server" Width="700px" ReadOnly="True"></asp:TextBox>
+    <asp:TextBox ID="tbFilename" runat="server" Width="700px" ReadOnly="True" ClientIDMode="Static"></asp:TextBox>
     <asp:TextBox ID="tbResultsNum" runat="server" Width="120px" ReadOnly="True"></asp:TextBox>
     <br />
-    <asp:TextBox ID="taResult" runat="server" Height="500px" TextMode="MultiLine" Width="820px"></asp:TextBox>
+    <asp:TextBox ID="taResult" runat="server" Height="500px" TextMode="MultiLine" Width="820px" ClientIDMode="Static"></asp:TextBox>
+    <script type="text/javascript">
+
+        //Prints what is in the result textarea by creating a window containing the result text and printing it
+        function Print() {
+            var mywindow = window.open('', 'Result', 'height=400,width=600');
+            var data = document.getElementById("taResult").innerHTML;
+            mywindow.document.write('<html><head><title>Result</title>');
+
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(data);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10
+
+            mywindow.print();
+            mywindow.close();
+
+            return true;
+        }
+
+</script>
 </asp:Content>
