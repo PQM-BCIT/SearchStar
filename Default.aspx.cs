@@ -67,6 +67,11 @@ public partial class _Default : System.Web.UI.Page
         }
     }
 
+    /// <summary>
+    /// Click handler for clicking the first button.
+    /// </summary>
+    /// <param name="sender">The sender of the message.</param>
+    /// <param name="e">The arguments of the message.</param>
     protected void ibFirst_Click(object sender, ImageClickEventArgs e)
     {
         if (current == 0)
@@ -75,6 +80,11 @@ public partial class _Default : System.Web.UI.Page
         UpdateForm();
     }
 
+    /// <summary>
+    /// Click handler for clicking the previous button.
+    /// </summary>
+    /// <param name="sender">The sender of the message.</param>
+    /// <param name="e">The arguments of the message.</param>
     protected void ibPrevious_Click(object sender, ImageClickEventArgs e)
     {
         if (current == 0)
@@ -83,6 +93,11 @@ public partial class _Default : System.Web.UI.Page
         UpdateForm();
     }
 
+    /// <summary>
+    /// Click handler for clicking the next button.
+    /// </summary>
+    /// <param name="sender">The sender of the message.</param>
+    /// <param name="e">The arguments of the message.</param>
     protected void ibNext_Click(object sender, ImageClickEventArgs e)
     {
         if (current == resultFiles.Length - 1)
@@ -91,6 +106,11 @@ public partial class _Default : System.Web.UI.Page
         UpdateForm();
     }
 
+    /// <summary>
+    /// Click handler for clicking the last button.
+    /// </summary>
+    /// <param name="sender">The sender of the message.</param>
+    /// <param name="e">The arguments of the message.</param>
     protected void ibLast_Click(object sender, ImageClickEventArgs e)
     {
         if (current == resultFiles.Length - 1)
