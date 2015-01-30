@@ -174,6 +174,9 @@ public partial class _Default : System.Web.UI.Page
         tbFilename.Text = Path.GetFileName(resultFiles[current]);
         tbResultsNum.Text = RESULTS_OF.Replace("{0}", currentPosition).Replace("{1}", lastPosition);
         taResult.Text = GetContents(resultFiles[current]);
+        SetPrev(current == 0);
+        SetNext(current == resultFiles.Length - 1);
+        SetDownload( Path.GetFileName( resultFiles[current] ) );
     }
 
     /// <summary>
@@ -187,5 +190,60 @@ public partial class _Default : System.Web.UI.Page
         content = File.ReadAllText(filepath);
         return content;
     }
+
+    /// <summary>
+    /// Enables/Disables ibFirst and ibPrevious image buttons based on current displayed result
+    /// </summary>
+    /// <param name="atFirst">Whether or not the current result is the first</param>
+    private void SetPrev( bool atFirst )
+    {
+        if (atFirst)
+        {
+            ibFirst.Enabled = false;
+            ibPrevious.Enabled = false;
+            ibFirst.Style.Add("opacity", "0.4");
+            ibPrevious.Style.Add("opacity", "0.4");
+        }
+        else
+        {
+            ibFirst.Enabled = true;
+            ibPrevious.Enabled = true;
+            ibFirst.Style.Remove("opacity");
+            ibPrevious.Style.Remove("opacity");
+        }
+    }
+
+    /// <summary>
+    /// Enables/Disables ibLast and ibNext image buttons based on current displayed result
+    /// </summary>
+    /// <param name="atLast">Whether or not the current result is the last</param>
+    private void SetNext(bool atLast)
+    {
+        if (atLast)
+        {
+            ibLast.Enabled = false;
+            ibNext.Enabled = false;
+            ibLast.Style.Add("opacity", "0.4");
+            ibNext.Style.Add("opacity", "0.4");
+        }
+        else
+        {
+            ibLast.Enabled = true;
+            ibNext.Enabled = true;
+            ibLast.Style.Remove("opacity");
+            ibNext.Style.Remove("opacity");
+        }
+    }
+
+    /// <summary>
+    /// Sets the download link and filename for the ibSave control
+    /// </summary>
+    /// <param name="filename">The name of the file to be printed</param>
+    private void SetDownload( string filename )
+    {
+        ibSave.HRef =  "files/"+filename;// Assumes file is in dir "files/"
+        ibSave.Attributes.Add("download", filename);
+    }
+
 
 }
