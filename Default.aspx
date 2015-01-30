@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="contentHeader" ContentPlaceHolderID="head" Runat="Server">
-    <img src="files/images/searchstar.png" />
 </asp:Content>
 <asp:Content ID="contentInterface" ContentPlaceHolderID="cphInterface" Runat="Server">
+    <img src="files/images/searchstar.png" />
     <asp:RequiredFieldValidator ID="rfvSearch" runat="server" ErrorMessage="Search query was empty." ControlToValidate="tbSearch" ForeColor="Red"></asp:RequiredFieldValidator>
     <br />
     <asp:TextBox ID="tbSearch" runat="server" Width="820px" ValidateRequestMode="Disabled"></asp:TextBox>
