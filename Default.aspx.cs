@@ -261,7 +261,7 @@ public partial class _Default : System.Web.UI.Page
     /// <param name="filename">The name of the file to be printed</param>
     private void SetDownload( string filename )
     {
-        ibSave.HRef =  "files/"+filename;// Assumes file is in dir "files/"
+        ibSave.HRef =  "files/" + filename;// Assumes file is in dir "files/"
         ibSave.Attributes.Add("download", filename);
     }
 

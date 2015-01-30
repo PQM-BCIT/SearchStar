@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="contentHeader" ContentPlaceHolderID="head" Runat="Server">
-    &lt;LOGO HERE&gt;
+    <img src="files/images/searchstar.png" />
 </asp:Content>
 <asp:Content ID="contentInterface" ContentPlaceHolderID="cphInterface" Runat="Server">
     <asp:RequiredFieldValidator ID="rfvSearch" runat="server" ErrorMessage="Search query was empty." ControlToValidate="tbSearch" ForeColor="Red"></asp:RequiredFieldValidator>
